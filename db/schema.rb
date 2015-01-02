@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150101224403) do
   create_table "notes", force: true do |t|
     t.string   "title"
     t.text     "body"
-    t.string   "host"
+    t.integer  "user_id"
     t.string   "shared"
     t.datetime "created_at"
     t.datetime "updated_at"
