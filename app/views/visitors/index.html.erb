@@ -1,2 +1,83 @@
-<h3>Welcome</h3>
-<p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+<%#= link_to 'Users:', users_path %> <%#= User.count %> <!-- registered -->
+
+  <div class="row">
+
+    <div class="col-sm-4 left-box">
+      <div class="span4 panel panel-default" style="max-height: 85vh;">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+
+          <%= image_tag(current_user.avatar.url(:thumb), :class => 'thumb') %>
+
+        </div>
+        <!-- List group -->
+        <ul style="overflow:auto; overflow-x: hidden;" class="list-group">
+          <li class="list-group-item">Note 1</li>
+          <li class="list-group-item">Note 2</li>
+          <li class="list-group-item">Note 3</li>
+          <li class="list-group-item">Note 1</li>
+          <li class="list-group-item">Note 2</li>
+          <li class="list-group-item">Note 3</li>
+          <li class="list-group-item">Note 1</li>
+          <li class="list-group-item">Note 2</li>
+          <li class="list-group-item">Note 3</li>
+          <li class="list-group-item">Note 1</li>
+          <li class="list-group-item">Note 2</li>
+          <li class="list-group-item">Note 3</li>
+
+        </ul>
+        <div class="panel-footer">
+
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addContactModal">New</button>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+    <div class="col-sm-8 right-box">
+      <div class="span4 panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Title</div>
+
+
+        <!-- List group -->
+        <ul style="max-height:350px; overflow: auto;overflow-x: hidden;" class="list-group">
+
+          <div class="panel-body">
+            <div class="row box-contents">
+                <p>Notes. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+            </div>
+          </div>
+        </ul>
+
+
+        <div class="panel-footer">
+          <!--<button type="button" class="btn btn-danger">Delete</button>-->
+          <button type="button" class="btn btn-danger btn-sm">Delete</button>
+        </div>
+
+      </div>
+
+    </div><!--/#UsersInfo-->
+
+  </div><!--/.row-->
+
+
+<% if user_signed_in? %>
+    <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+    <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+<% else %>
+    <li><%= link_to 'Sign in', new_user_session_path %></li>
+    <li><%= link_to 'Sign up', new_user_registration_path %></li>
+<% end %>
+
+<% if user_signed_in? %>
+    <% if current_user.admin? %>
+        <li><%= link_to 'Admin', '/admin' %></li>
+        <li><%= link_to 'Users', users_path %></li>
+    <% end %>
+<% end %>

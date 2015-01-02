@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="shortcut icon" href="http://www.flat-jack.de/fileadmin/Resources/Public/Icons/favicon.ico" type="image/x-icon; charset=binary">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Rails Devise Pundit" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Devise Pundit" %>">
+    <title><%= content_for?(:title) ? yield(:title) : Design.first.try(:name).try(:capitalize) || 'Synopsis' %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Synopsis" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <%= render 'layouts/navigation' %>
+    <!--<header>
+      <%#= render 'layouts/navigation' %>
     </header>
-    <main role="main">
+
+
+    <main role="main">-->
+
+        <%#= render 'layouts/navigation_links' %>
+
+<div class="container">
        <%= render 'layouts/messages' %>
        <%= yield %>
-    </main>
+</div>
+
+  <!--</main>-->
+
+
+
+
+
+    <%#= Design.first.try(:name).try(:capitalize) || 'Synopsis' %>
+
   </body>
 </html>

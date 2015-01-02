@@ -31,6 +31,16 @@
         <%= f.password_field :current_password, class: 'form-control' %>
       </div>
     </fieldset>
+
+      <div class="form-group">
+        <%= f.label :avatar, class: 'col-sm-2 control-label'  %>
+        <div class="col-sm-6">
+          <%= f.file_field :avatar %>
+        </div>
+      </div>
+
+      <br />
+
     <%= f.submit 'Update', :class => 'button right' %>
   <% end %>
 </div>

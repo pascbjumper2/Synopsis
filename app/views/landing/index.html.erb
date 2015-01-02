@@ -1,0 +1,75 @@
+<br />
+
+<h1 class="text-center">Set up <b>Synopsis!</b></h1>
+
+<h3 class="text-center">The self-hosted, multi-user, notes-sharing web-app for everybody!</h3>
+
+<br />
+<br />
+
+<!-- turquoise, scarlet, marigold -->
+
+<div class="col-md-4 col-md-offset-4 centered-box">
+    <%= form_for :design, :url => { :action => 'create' } do |g| %>
+
+        <p>Site name:</p>
+        <%= g.text_field :name, :class => 'form-control text-field', :placeholder => "Ex: Synopsis" %>
+
+        <br />
+
+        <p>Style:</p>
+        <div class="btn-group btn-group-justified" data-toggle="buttons">
+          <label class="btn btn-primary active" id="style-1">
+            <%= g.radio_button :style, "Turquoise", :checked => true %> Turquoise
+          </label>
+          <label class="btn btn-primary" id="style-2">
+            <%= g.radio_button :style, "Scarlet" %> Scarlet
+          </label>
+          <label class="btn btn-primary" id="style-3">
+            <%= g.radio_button :style, "Marigold" %> Marigold
+          </label>
+        </div>
+
+        <br />
+
+        <%= g.submit 'Create Site', :class => 'btn btn-primary submit-button' %>
+    <% end %>
+
+</div>
+
+<br /><br />
+
+<script>
+
+    $( document ).ready(function() {
+        $("body").first().css("background-color","#00CED1");
+        $('.submit-button').attr('disabled', 'disabled');
+
+        $('.text-field').keyup(function() {
+            var empty = false;
+            $('.text-field').each(function() {
+                if ($(this).val().length == 0) {
+                    empty = true;
+                }
+            });
+
+            if (empty) {
+                $('.submit-button').attr('disabled', 'disabled');
+            } else {
+                $('.submit-button').removeAttr('disabled');
+            }
+        });
+    });
+
+    $( "#style-1" ).on( "click", function() {
+        $('body').animate({backgroundColor: '#00CED1'}, 'slow');
+    });
+    $( "#style-2" ).on( "click", function() {
+        $('body').animate({backgroundColor: '#de1804'}, 'slow');
+    });
+    $( "#style-3" ).on( "click", function() {
+        $('body').animate({backgroundColor: '#fcce2c'}, 'slow');
+    });
+
+
+</script>
