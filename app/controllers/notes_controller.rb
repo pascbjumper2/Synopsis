@@ -3,7 +3,10 @@ class NotesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @notes = Note.order("created_at DESC")
+    #@notes = Note.order("created_at DESC")
+
+    @notes = Note.where(:user_id => current_user.id)
+    @note = Note.new
   end
 
   def show
@@ -15,7 +18,9 @@ class NotesController < ApplicationController
   end
 
   def create
+
     @note = Note.new(note_params)
+    @note.user_id = current_user.id
     if @note.save
       redirect_to notes_path, notice: "The note has been successfully created."
     else

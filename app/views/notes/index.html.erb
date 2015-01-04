@@ -1,15 +1,81 @@
-<%= link_to "New Note", new_note_path %>
-<% @notes.each do |note| %>
-  <h3><%= note.title.html_safe %></h3>
-  <p><%= note.body.html_safe %></p>
-  <%= link_to "Edit Note", edit_note_path(note) %>
-  <% if note != @notes.last %>
-  <hr />
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="row">
+    <div id="left-panel-holder" class="panel-holder col-sm-4" style="position:fixed;">
+      <%= render 'layouts/messages' %>
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="height:60px;">
+          <%= link_to image_tag(current_user.avatar.url(:thumb), :class => 'thumb pull-left'), edit_user_registration_path %>
 
 
-<br /><br />
-<% if user_signed_in? %><%= current_user.name.capitalize %>: <%= current_user.id %><% end %>
+          <%= link_to "", destroy_user_session_path, :method=>'delete', :class => 'btn btn-primary btn-danger glyphicon glyphicon-log-out' %>
+
+          <%= link_to "", new_note_path, :class => 'btn btn-primary btn-default pull-right glyphicon glyphicon-plus' %>
+
+
+          <%#= button_to "New Note", new_note_path %>
+
+
+        </div>
+
+        <ul class="list-group">
+
+          <% @notes.each do |note| %>
+              <li class="list-group-item"><%= note.title.html_safe %>
+                <%= link_to "Edit", edit_note_path(note), :class => "pull-right" %>
+              </li>
+          <% end %>
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="left-panel-holder" class="panel-holder col-sm-8 pull-right">
+
+
+    <% @notes.each do |note| %>
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading" style="height:60px;">
+            <h2 style="margin:0px;" class="pull-left"><%= note.title.html_safe %></h2>
+            <!--<p>| Share | Delete |</p>-->
+            <a href="#" class="btn btn-primary btn-danger pull-right" alt="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+            <a href="#" class="btn btn-primary btn-success pull-right" alt="Save"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="#" class="btn btn-primary btn-info pull-right" alt="Share"><span class="glyphicon glyphicon-share-alt"></span></a>
+          </div>
+
+          <div class="panel-content">
+            <%= note.body.html_safe %>
+            <%= link_to "Edit Note", edit_note_path(note) %>
+            <%= link_to "New Note", new_note_path %>
+          </div>
+
+
+
+        </div>
+    <% end %>
+
+
+  </div>
+
+
+</div><!--row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
